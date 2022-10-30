@@ -8,6 +8,8 @@ import numpy as np
 import scipy
 from scipy.stats import binom
 from statsmodels.distributions.empirical_distribution import ECDF
+import matplotlib.pyplot as plt
+
 
 
 def Empirical_F(X):
@@ -29,14 +31,21 @@ def Empirical_F(X):
 
     m = np.column_stack((X, col2))
 
-    print(m)
+    return m
 
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    x = np.array([8,2,-13,4,-9,0,18,4,-5,10,1,-7,7,13,-5,-16,-9,18,-10,0])
+    X = binom.rvs(n = 5, p  = 1/6,size =  20)
+    print(X)
+    m = Empirical_F(X)
 
-    Empirical_F(x)
-
+    y = m[:,1]
+    y = np.transpose(y)
+    print(y)
+    print(X)
+    plt.ylim(0,1)
+    plt.step(X,y)
+    plt.show()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
